@@ -12,8 +12,8 @@ export interface Guide {
 export const guides: Guide[] = [
   {
     id: "g1",
-    name: "Carlos Silva",
-    photo: "https://randomuser.me/api/portraits/men/32.jpg",
+    name: "Dora Aventureira",
+    photo: new URL("@/assets/guia-dora.jpg", import.meta.url).href,
     phone: "(15) 99999-1234",
     rating: 4.8,
     totalReviews: 47,
