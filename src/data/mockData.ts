@@ -26,10 +26,14 @@ export interface FeedItem {
   id: string;
   title: string;
   description: string;
+  fullContent: string;
   image: string;
   category: "evento" | "aviso" | "notícia";
   date: string;
   featured: boolean;
+  location?: string;
+  time?: string;
+  contact?: string;
 }
 
 export interface Commerce {
