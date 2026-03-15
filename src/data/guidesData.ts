@@ -11,16 +11,6 @@ export interface Guide {
 
 export const guides: Guide[] = [
   {
-    id: "g1",
-    name: "Dora Aventureira",
-    photo: new URL("@/assets/guia-dora.jpg", import.meta.url).href,
-    phone: "(15) 99999-1234",
-    rating: 4.8,
-    totalReviews: 47,
-    specialties: ["Trilhas", "Cachoeiras"],
-    experience: "8 anos",
-  },
-  {
     id: "g2",
     name: "Ana Souza",
     photo: "https://randomuser.me/api/portraits/women/44.jpg",
@@ -49,5 +39,15 @@ export const guides: Guide[] = [
     totalReviews: 38,
     specialties: ["Cachoeiras", "Rapel"],
     experience: "6 anos",
+  },
+  {
+    id: "g1",
+    name: "Dora Aventureira",
+    photo: new URL("@/assets/guia-dora.jpg", import.meta.url).href,
+    phone: "(15) 99999-1234",
+    rating: 1.0,
+    totalReviews: 47,
+    specialties: ["Trilhas", "Cachoeiras"],
+    experience: "8 anos",
   },
 ];
