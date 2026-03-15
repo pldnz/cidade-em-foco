@@ -95,6 +95,9 @@ export function SpotDetail({ spot, onBack }: SpotDetailProps) {
             </span>
           ))}
         </div>
+
+        {/* Guides */}
+        <GuidesList />
       </div>
     </div>
   );
