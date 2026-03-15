@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { feedItems, type FeedItem } from "@/data/mockData";
+import { FeedDetail } from "@/components/FeedDetail";
 import { Calendar, AlertTriangle, Newspaper, Star } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
@@ -18,6 +19,11 @@ const categoryIcons: Record<string, React.ElementType> = {
 
 export function FeedTab() {
   const [filter, setFilter] = useState("todos");
+  const [selectedItem, setSelectedItem] = useState<FeedItem | null>(null);
+
+  if (selectedItem) {
+    return <FeedDetail item={selectedItem} onBack={() => setSelectedItem(null)} />;
+  }
 
   const filtered = filter === "todos" ? feedItems : feedItems.filter((i) => i.category === filter);
 
@@ -49,18 +55,18 @@ export function FeedTab() {
       {/* Feed cards */}
       <div className="px-4 py-4 space-y-4">
         {filtered.map((item) => (
-          <FeedCard key={item.id} item={item} />
+          <FeedCard key={item.id} item={item} onSelect={() => setSelectedItem(item)} />
         ))}
       </div>
     </div>
   );
 }
 
-function FeedCard({ item }: { item: FeedItem }) {
+function FeedCard({ item, onSelect }: { item: FeedItem; onSelect: () => void }) {
   const Icon = categoryIcons[item.category] || Newspaper;
 
   return (
-    <div className="bg-card rounded-lg overflow-hidden shadow-sm border border-border animate-slide-up">
+    <button onClick={onSelect} className="w-full text-left bg-card rounded-lg overflow-hidden shadow-sm border border-border animate-slide-up">
       <div className="relative">
         <img src={item.image} alt={item.title} className="w-full h-44 object-cover" loading="lazy" />
         {item.featured && (
@@ -85,10 +91,14 @@ function FeedCard({ item }: { item: FeedItem }) {
       <div className="p-4">
         <div className="flex items-center gap-2 mb-1">
           <span className="text-xs font-semibold text-primary">{item.date}</span>
+          {item.location && (
+            <span className="text-xs text-muted-foreground">· {item.location}</span>
+          )}
         </div>
         <h3 className="font-display font-bold text-foreground text-base leading-tight">{item.title}</h3>
         <p className="text-sm text-muted-foreground mt-1.5 line-clamp-2">{item.description}</p>
+        <span className="inline-block mt-2 text-xs font-semibold text-primary">Ler mais →</span>
       </div>
-    </div>
+    </button>
   );
 }
