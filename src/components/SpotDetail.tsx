@@ -1,6 +1,7 @@
 import { type TouristSpot } from "@/data/mockData";
-import { ArrowLeft, Clock, Mountain, Phone, Navigation, ExternalLink } from "lucide-react";
+import { ArrowLeft, Clock, Mountain, Navigation } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { GuidesList } from "@/components/GuidesList";
 
 interface SpotDetailProps {
   spot: TouristSpot;
