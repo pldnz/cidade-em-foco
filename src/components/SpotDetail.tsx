@@ -1,6 +1,7 @@
 import { type TouristSpot } from "@/data/mockData";
-import { ArrowLeft, Clock, Mountain, Phone, Navigation, ExternalLink } from "lucide-react";
+import { ArrowLeft, Clock, Mountain, Navigation } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
+import { GuidesList } from "@/components/GuidesList";
 
 interface SpotDetailProps {
   spot: TouristSpot;
@@ -45,24 +46,13 @@ export function SpotDetail({ spot, onBack }: SpotDetailProps) {
         </div>
 
         {/* Quick action buttons - "10 second rule" */}
-        <div className="flex gap-3">
-          <button
-            onClick={openDirections}
-            className="flex-1 flex items-center justify-center gap-2 bg-primary text-primary-foreground py-3 rounded-lg font-semibold text-sm"
-          >
-            <Navigation className="h-4 w-4" />
-            Como Chegar
-          </button>
-          {spot.guideContact && (
-            <a
-              href={`tel:${spot.guideContact}`}
-              className="flex-1 flex items-center justify-center gap-2 bg-secondary text-secondary-foreground py-3 rounded-lg font-semibold text-sm"
-            >
-              <Phone className="h-4 w-4" />
-              Ligar Guia
-            </a>
-          )}
-        </div>
+        <button
+          onClick={openDirections}
+          className="w-full flex items-center justify-center gap-2 bg-primary text-primary-foreground py-3 rounded-lg font-semibold text-sm"
+        >
+          <Navigation className="h-4 w-4" />
+          Como Chegar
+        </button>
 
         {/* Info grid */}
         <div className="grid grid-cols-2 gap-3">
@@ -105,6 +95,9 @@ export function SpotDetail({ spot, onBack }: SpotDetailProps) {
             </span>
           ))}
         </div>
+
+        {/* Guides */}
+        <GuidesList />
       </div>
     </div>
   );
